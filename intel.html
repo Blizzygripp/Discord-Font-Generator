@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discord Fonts — Copy & Paste</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d0e14;
+  --surface: #13141d;
+  --surface2: #1a1b27;
+  --border: #252638;
+  --border2: #353650;
+  --accent: #5865f2;
+  --accent2: #7289da;
+  --accent-glow: rgba(88,101,242,0.15);
+  --text: #e8eaf6;
+  --text2: #8e93bb;
+  --text3: #4a4e6e;
+  --success: #3ba55d;
+  --danger: #ed4245;
+  --font-display: 'Syne', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --sidebar-w: 280px;
+  --header-h: 60px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-display); display: flex; flex-direction: column; }
+body::before { content:''; position:fixed; inset:0; background-image: linear-gradient(rgba(88,101,242,0.03) 1px,transparent 1px), linear-gradient(90deg,rgba(88,101,242,0.03) 1px,transparent 1px); background-size:40px 40px; pointer-events:none; z-index:0; }
+
+/* TOPBAR */
+.topbar { position:relative; z-index:10; height:var(--header-h); background:var(--surface); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:12px; padding:0 16px; flex-shrink:0; }
+.topbar-logo { display:flex; align-items:center; gap:9px; flex-shrink:0; }
+.logo-mark { width:30px; height:30px; background:var(--accent); border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0; }
+.topbar-logo h1 { font-size:1rem; font-weight:800; letter-spacing:-0.02em; color:var(--text); white-space:nowrap; }
+.topbar-div { width:1px; height:22px; background:var(--border2); flex-shrink:0; }
+.input-wrap { flex:1; display:flex; align-items:center; gap:8px; background:var(--surface2); border:1px solid var(--border2); border-radius:9px; padding:0 12px; height:36px; transition:border-color .2s, box-shadow .2s; max-width:480px; }
+.input-wrap:focus-within { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-glow); }
+.input-icon { opacity:.35; flex-shrink:0; font-size:13px; }
+#userText { flex:1; background:transparent; border:none; outline:none; font-family:var(--font-display); font-size:0.92rem; font-weight:600; color:var(--text); caret-color:var(--accent); min-width:0; }
+#userText::placeholder { color:var(--text3); font-weight:400; }
+.save-btn { flex-shrink:0; height:26px; padding:0 11px; background:var(--accent); border:none; border-radius:6px; color:#fff; font-family:var(--font-mono); font-size:0.65rem; letter-spacing:.05em; cursor:pointer; transition:opacity .15s, transform .1s; white-space:nowrap; }
+.save-btn:hover { opacity:.85; }
+.save-btn:active { transform:scale(.96); }
+.filter-bar { display:flex; gap:5px; align-items:center; flex-shrink:0; overflow-x:auto; scrollbar-width:none; }
+.filter-bar::-webkit-scrollbar { display:none; }
+.tag { padding:4px 11px; border-radius:100px; border:1px solid var(--border); background:transparent; color:var(--text2); font-size:0.7rem; font-family:var(--font-mono); cursor:pointer; transition:all .15s; user-select:none; white-space:nowrap; flex-shrink:0; }
+.tag:hover { border-color:var(--border2); color:var(--text); }
+.tag.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+
+/* BODY */
+.app-body { position:relative; z-index:1; flex:1; display:flex; overflow:hidden; }
+
+/* SIDEBAR */
+.sidebar { width:var(--sidebar-w); flex-shrink:0; border-right:1px solid var(--border); display:flex; flex-direction:column; background:var(--surface); overflow:hidden; }
+.sb-head { padding:13px 15px 9px; border-bottom:1px solid var(--border); flex-shrink:0; display:flex; align-items:center; justify-content:space-between; }
+.sb-head-label { font-size:0.65rem; text-transform:uppercase; letter-spacing:.12em; color:var(--text3); font-family:var(--font-mono); display:flex; align-items:center; gap:7px; }
+.count-pill { background:var(--surface2); border:1px solid var(--border2); color:var(--text2); font-size:0.58rem; padding:1px 7px; border-radius:100px; font-family:var(--font-mono); }
+.sb-list { flex:1; overflow-y:auto; scrollbar-width:thin; scrollbar-color:var(--border2) transparent; padding:6px 0; }
+.sb-list::-webkit-scrollbar { width:3px; }
+.sb-list::-webkit-scrollbar-thumb { background:var(--border2); border-radius:2px; }
+.saved-row { display:flex; align-items:center; gap:7px; padding:8px 13px; cursor:pointer; border-left:2px solid transparent; transition:background .1s; user-select:none; }
+.saved-row:hover { background:var(--surface2); }
+.saved-row.active { background:var(--accent-glow); border-left-color:var(--accent); }
+.saved-row-txt { flex:1; font-size:0.85rem; font-weight:600; color:var(--text); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.saved-row.active .saved-row-txt { color:#fff; }
+.del-btn { flex-shrink:0; background:none; border:none; color:var(--text3); cursor:pointer; font-size:0.8rem; padding:2px 4px; border-radius:4px; opacity:0; transition:color .15s, background .15s; line-height:1; }
+.saved-row:hover .del-btn { opacity:1; }
+.del-btn:hover { color:var(--danger); background:rgba(237,66,69,.12); }
+.sb-empty { padding:2.5rem 1rem; text-align:center; color:var(--text3); font-size:0.75rem; font-family:var(--font-mono); line-height:1.8; }
+.sb-empty strong { color:var(--text2); }
+
+/* MAIN */
+.main-panel { flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0; }
+.panel-bar { padding:11px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; flex-shrink:0; background:rgba(13,14,20,.7); gap:12px; }
+.active-label { font-size:0.98rem; font-weight:700; color:var(--text); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0; }
+.active-label.empty { color:var(--text3); font-weight:400; font-style:italic; font-size:0.82rem; }
+.style-count { font-size:0.65rem; color:var(--text3); font-family:var(--font-mono); text-transform:uppercase; letter-spacing:.1em; white-space:nowrap; flex-shrink:0; }
+
+/* FONT LIST */
+.font-list { flex:1; overflow-y:auto; scrollbar-width:thin; scrollbar-color:var(--border2) transparent; padding-bottom:2rem; }
+.font-list::-webkit-scrollbar { width:4px; }
+.font-list::-webkit-scrollbar-thumb { background:var(--border2); border-radius:2px; }
+
+.group-head { padding:14px 20px 5px; font-size:0.62rem; text-transform:uppercase; letter-spacing:.14em; color:var(--text3); font-family:var(--font-mono); background:var(--bg); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px; }
+.group-head::after { content:''; flex:1; height:1px; background:var(--border); }
+
+.font-row { display:flex; align-items:center; gap:0; padding:0 20px; height:56px; border-bottom:1px solid var(--border); transition:background .1s; }
+.font-row:hover { background:var(--surface); }
+.font-row:last-child { border-bottom:none; }
+
+.row-meta { width:170px; flex-shrink:0; padding-right:14px; }
+.row-name { font-size:0.67rem; font-family:var(--font-mono); color:var(--text3); text-transform:uppercase; letter-spacing:.08em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.row-cat { font-size:0.59rem; font-family:var(--font-mono); color:var(--text3); opacity:.55; text-transform:uppercase; letter-spacing:.06em; margin-top:2px; }
+.row-preview { flex:1; font-size:1.2rem; line-height:1; color:var(--text); overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; padding-right:14px; }
+.row-preview.ph { color:var(--text3); font-size:0.8rem; font-style:italic; font-family:var(--font-mono); }
+.row-copy { flex-shrink:0; padding:5px 14px; border-radius:7px; border:1px solid var(--border2); background:transparent; color:var(--text2); font-family:var(--font-mono); font-size:0.65rem; letter-spacing:.05em; cursor:pointer; transition:all .15s; }
+.row-copy:hover { background:var(--accent); border-color:var(--accent); color:#fff; }
+.row-copy.copied { background:var(--success); border-color:var(--success); color:#fff; }
+
+@media (max-width:680px) {
+  :root { --sidebar-w:200px; }
+  .row-meta { width:110px; }
+  .row-cat, .filter-bar { display:none; }
+}
+@media (max-width:480px) {
+  .sidebar { display:none; }
+  .topbar-div { display:none; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-logo">
+    <div class="logo-mark">💬</div>
+    <h1>Discord Fonts</h1>
+  </div>
+  <div class="topbar-div"></div>
+  <div class="input-wrap">
+    <span class="input-icon">✏</span>
+    <input id="userText" type="text" placeholder="Type your text..." autocomplete="off" spellcheck="false" maxlength="80">
+    <button class="save-btn" id="saveBtn">+ Save</button>
+  </div>
+  <div class="topbar-div"></div>
+  <div class="filter-bar" id="filterBar">
+    <div class="tag active" data-cat="all">All</div>
+    <div class="tag" data-cat="serif">Serif</div>
+    <div class="tag" data-cat="cursive">Cursive</div>
+    <div class="tag" data-cat="gothic">Gothic</div>
+    <div class="tag" data-cat="bubble">Bubble</div>
+    <div class="tag" data-cat="glitch">Glitch</div>
+    <div class="tag" data-cat="small">Small</div>
+    <div class="tag" data-cat="aesthetic">Aesthetic</div>
+  </div>
+</div>
+
+<div class="app-body">
+  <aside class="sidebar">
+    <div class="sb-head">
+      <span class="sb-head-label">Your Text <span class="count-pill" id="savedCount">0</span></span>
+    </div>
+    <div class="sb-list" id="sbList"></div>
+  </aside>
+
+  <div class="main-panel">
+    <div class="panel-bar">
+      <span class="active-label empty" id="activeLabel">Type something above to preview fonts</span>
+      <span class="style-count" id="styleCount">25 styles</span>
+    </div>
+    <div class="font-list" id="fontList"></div>
+  </div>
+</div>
+
+<script>
+const fonts = [
+  { name:"Mathematical Bold", cat:"serif", map:c=>{if(c>='a'&&c<='z')return String.fromCodePoint(0x1D41A+c.charCodeAt(0)-97);if(c>='A'&&c<='Z')return String.fromCodePoint(0x1D400+c.charCodeAt(0)-65);if(c>='0'&&c<='9')return String.fromCodePoint(0x1D7CE+c.charCodeAt(0)-48);return c;}},
+  { name:"Mathematical Italic", cat:"serif", map:c=>{if(c==='h')return'\u210E';if(c>='a'&&c<='z')return String.fromCodePoint(0x1D44E+c.charCodeAt(0)-97);if(c>='A'&&c<='Z')return String.fromCodePoint(0x1D434+c.charCodeAt(0)-65);return c;}},
+  { name:"Bold Italic Serif", cat:"serif", map:c=>{if(c>='a'&&c<='z')return String.fromCodePoint(0x1D482+c.charCodeAt(0)-97);if(c>='A'&&c<='Z')return String.fromCodePoint(0x1D468+c.charCodeAt(0)-65);return c;}},
+  { name:"Double Struck", cat:"serif", map:c=>{const L={'a':'\uD835\uDD52','b':'\uD835\uDD53','c':'\uD835\uDD54','d':'\uD835\uDD55','e':'\uD835\uDD56','f':'\uD835\uDD57','g':'\uD835\uDD58','h':'\uD835\uDD59','i':'\uD835\uDD5A','j':'\uD835\uDD5B','k':'\uD835\uDD5C','l':'\uD835\uDD5D','m':'\uD835\uDD5E','n':'\uD835\uDD5F','o':'\uD835\uDD60','p':'\uD835\uDD61','q':'\uD835\uDD62','r':'\uD835\uDD63','s':'\uD835\uDD64','t':'\uD835\uDD65','u':'\uD835\uDD66','v':'\uD835\uDD67','w':'\uD835\uDD68','x':'\uD835\uDD69','y':'\uD835\uDD6A','z':'\uD835\uDD6B'};const U={'A':'\u{1D538}','B':'\u{1D539}','C':'\u2102','D':'\u{1D53B}','E':'\u{1D53C}','F':'\u{1D53D}','G':'\u{1D53E}','H':'\u210D','I':'\u{1D540}','J':'\u{1D541}','K':'\u{1D542}','L':'\u{1D543}','M':'\u{1D544}','N':'\u2115','O':'\u{1D546}','P':'\u2119','Q':'\u211A','R':'\u211D','S':'\u{1D54A}','T':'\u{1D54B}','U':'\u{1D54C}','V':'\u{1D54D}','W':'\u{1D54E}','X':'\u{1D54F}','Y':'\u{1D550}','Z':'\u2124'};const N={'0':'\uD835\uDFD8','1':'\uD835\uDFD9','2':'\uD835\uDFDA','3':'\uD835\uDFDB','4':'\uD835\uDFDC','5':'\uD835\uDFDD','6':'\uD835\uDFDE','7':'\uD835\uDFDF','8':'\uD835\uDFE0','9':'\uD835\uDFE1'};return L[c.toLowerCase()]||U[c]||N[c]||c;}},
+  { name:"Script / Cursive", cat:"cursive", map:c=>{const U={'A':'\uD835\uDC9C','B':'\u212C','C':'\uD835\uDC9E','D':'\uD835\uDC9F','E':'\u2130','F':'\u2131','G':'\uD835\uDCA2','H':'\u210B','I':'\u2110','J':'\uD835\uDCA5','K':'\uD835\uDCA6','L':'\u2112','M':'\u2133','N':'\uD835\uDCA9','O':'\uD835\uDCAA','P':'\uD835\uDCAB','Q':'\uD835\uDCAC','R':'\u211B','S':'\uD835\uDCAE','T':'\uD835\uDCAF','U':'\uD835\uDCB0','V':'\uD835\uDCB1','W':'\uD835\uDCB2','X':'\uD835\uDCB3','Y':'\uD835\uDCB4','Z':'\uD835\uDCB5'};const L={'a':'\uD835\uDCB6','b':'\uD835\uDCB7','c':'\uD835\uDCB8','d':'\uD835\uDCB9','e':'\u212F','f':'\uD835\uDCBB','g':'\u210A','h':'\uD835\uDCBD','i':'\uD835\uDCBE','j':'\uD835\uDCBF','k':'\uD835\uDCC0','l':'\u2113','m':'\uD835\uDCC2','n':'\uD835\uDCC3','o':'\u2134','p':'\uD835\uDCC5','q':'\uD835\uDCC6','r':'\uD835\uDCC7','s':'\uD835\uDCC8','t':'\uD835\uDCC9','u':'\uD835\uDCCA','v':'\uD835\uDCCB','w':'\uD835\uDCCC','x':'\uD835\uDCCD','y':'\uD835\uDCCE','z':'\uD835\uDCCF'};if(c>='A'&&c<='Z')return U[c]||c;if(c>='a'&&c<='z')return L[c]||c;return c;}},
+  { name:"Bold Script", cat:"cursive", map:c=>{if(c>='a'&&c<='z')return String.fromCodePoint(0x1D4EA+c.charCodeAt(0)-97);if(c>='A'&&c<='Z')return String.fromCodePoint(0x1D4D0+c.charCodeAt(0)-65);return c;}},
+  { name:"Old English", cat:"gothic", map:c=>{if(c>='a'&&c<='z')return String.fromCodePoint(0x1D51E+c.charCodeAt(0)-97);if(c>='A'&&c<='Z'){const s={A:'\u{1D504}',B:'\u{1D505}',C:'\u212D',D:'\u{1D507}',E:'\u{1D508}',F:'\u{1D509}',G:'\u{1D50A}',H:'\u210C',I:'\u2111',J:'\u{1D50D}',K:'\u{1D50E}',L:'\u{1D50F}',M:'\u{1D510}',N:'\u{1D511}',O:'\u{1D512}',P:'\u{1D513}',Q:'\u{1D514}',R:'\u211C',S:'\u{1D516}',T:'\u{1D517}',U:'\u{1D518}',V:'\u{1D519}',W:'\u{1D51A}',X:'\u{1D51B}',Y:'\u{1D51C}',Z:'\u2128'};return s[c]||c;}return c;}},
+  { name:"Bold Gothic", cat:"gothic", map:c=>{if(c>='a'&&c<='z')return String.fromCodePoint(0x1D586+c.charCodeAt(0)-97);if(c>='A'&&c<='Z')return String.fromCodePoint(0x1D56C+c.charCodeAt(0)-65);return c;}},
+  { name:"Bubble Text", cat:"bubble", map:c=>{if(c>='a'&&c<='z')return String.fromCodePoint(0x24D0+c.charCodeAt(0)-97);if(c>='A'&&c<='Z')return String.fromCodePoint(0x24B6+c.charCodeAt(0)-65);if(c>='0'&&c<='9')return String.fromCodePoint(0x2460+c.charCodeAt(0)-49);return c;}},
+  { name:"Negative Bubble", cat:"bubble", map:c=>{if(c>='a'&&c<='z')return String.fromCodePoint(0x1F150+c.charCodeAt(0)-97);if(c>='A'&&c<='Z')return String.fromCodePoint(0x1F150+c.charCodeAt(0)-65);return c;}},
+  { name:"Squared", cat:"bubble", map:c=>{if(c>='a'&&c<='z')return String.fromCodePoint(0x1F130+c.charCodeAt(0)-97);if(c>='A'&&c<='Z')return String.fromCodePoint(0x1F130+c.charCodeAt(0)-65);return c;}},
+  { name:"Monospace", cat:"aesthetic", map:c=>{if(c>='a'&&c<='z')return String.fromCodePoint(0x1D680+c.charCodeAt(0)-97);if(c>='A'&&c<='Z')return String.fromCodePoint(0x1D670+c.charCodeAt(0)-65);if(c>='0'&&c<='9')return String.fromCodePoint(0x1D7F6+c.charCodeAt(0)-48);return c;}},
+  { name:"Sans-Serif Bold", cat:"aesthetic", map:c=>{if(c>='a'&&c<='z')return String.fromCodePoint(0x1D5EE+c.charCodeAt(0)-97);if(c>='A'&&c<='Z')return String.fromCodePoint(0x1D5D4+c.charCodeAt(0)-65);if(c>='0'&&c<='9')return String.fromCodePoint(0x1D7EC+c.charCodeAt(0)-48);return c;}},
+  { name:"Sans Bold Italic", cat:"aesthetic", map:c=>{if(c>='a'&&c<='z')return String.fromCodePoint(0x1D622+c.charCodeAt(0)-97);if(c>='A'&&c<='Z')return String.fromCodePoint(0x1D608+c.charCodeAt(0)-65);return c;}},
+  { name:"Wide / Fullwidth", cat:"aesthetic", map:c=>{if(c>='!'&&c<='~')return String.fromCodePoint(0xFF01+c.charCodeAt(0)-33);return c;}},
+  { name:"Small Caps", cat:"small", map:c=>{const m={'a':'ᴀ','b':'ʙ','c':'ᴄ','d':'ᴅ','e':'ᴇ','f':'ꜰ','g':'ɢ','h':'ʜ','i':'ɪ','j':'ᴊ','k':'ᴋ','l':'ʟ','m':'ᴍ','n':'ɴ','o':'ᴏ','p':'ᴘ','q':'Q','r':'ʀ','s':'ꜱ','t':'ᴛ','u':'ᴜ','v':'ᴠ','w':'ᴡ','x':'x','y':'ʏ','z':'ᴢ'};return m[c.toLowerCase()]||c;}},
+  { name:"Superscript", cat:"small", map:c=>{const m={'a':'ᵃ','b':'ᵇ','c':'ᶜ','d':'ᵈ','e':'ᵉ','f':'ᶠ','g':'ᵍ','h':'ʰ','i':'ⁱ','j':'ʲ','k':'ᵏ','l':'ˡ','m':'ᵐ','n':'ⁿ','o':'ᵒ','p':'ᵖ','q':'q','r':'ʳ','s':'ˢ','t':'ᵗ','u':'ᵘ','v':'ᵛ','w':'ʷ','x':'ˣ','y':'ʸ','z':'ᶻ','0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹'};return m[c]||m[c.toLowerCase()]||c;}},
+  { name:"Subscript", cat:"small", map:c=>{const m={'a':'ₐ','e':'ₑ','h':'ₕ','i':'ᵢ','j':'ⱼ','k':'ₖ','l':'ₗ','m':'ₘ','n':'ₙ','o':'ₒ','p':'ₚ','r':'ᵣ','s':'ₛ','t':'ₜ','u':'ᵤ','v':'ᵥ','x':'ₓ','0':'₀','1':'₁','2':'₂','3':'₃','4':'₄','5':'₅','6':'₆','7':'₇','8':'₈','9':'₉'};return m[c]||m[c.toLowerCase()]||c;}},
+  { name:"Strikethrough", cat:"glitch", map:c=>c+'\u0336'},
+  { name:"Underline", cat:"glitch", map:c=>c+'\u0332'},
+  { name:"Double Underline", cat:"glitch", map:c=>c+'\u0333'},
+  { name:"Zalgo Light", cat:"glitch", map:(c,i)=>{if(c.trim()==='')return c;const z=['\u0300','\u0301','\u0302','\u0303','\u0308'];const b=['\u0316','\u0317','\u0324','\u0325'];return c+z[(i*13+7)%z.length]+b[(i*7+3)%b.length];}},
+  { name:"Upside Down", cat:"glitch", map:c=>{const m={'a':'ɐ','b':'q','c':'ɔ','d':'p','e':'ǝ','f':'ɟ','g':'ƃ','h':'ɥ','i':'ᴉ','j':'ɾ','k':'ʞ','l':'l','m':'ɯ','n':'u','o':'o','p':'d','q':'b','r':'ɹ','s':'s','t':'ʇ','u':'n','v':'ʌ','w':'ʍ','x':'x','y':'ʎ','z':'z','A':'∀','B':'q','C':'Ɔ','D':'p','E':'Ǝ','F':'Ⅎ','G':'פ','H':'H','I':'I','J':'ɾ','K':'ʞ','L':'˥','M':'W','N':'N','O':'O','P':'d','R':'ɹ','S':'S','T':'┴','U':'∩','V':'Λ','W':'M','X':'X','Y':'⅄','Z':'Z','?':'¿','!':'¡'};return m[c]||c;}, transform:t=>[...t].reverse()},
+  { name:"Mirror Text", cat:"glitch", map:c=>{const m={'a':'ɒ','b':'d','c':'ɔ','d':'b','e':'ɘ','f':'ꟻ','g':'ϱ','h':'ʜ','i':'i','j':'ꞁ','k':'ʞ','l':'l','m':'m','n':'n','o':'o','p':'q','q':'p','r':'ɿ','s':'ƨ','t':'ƚ','u':'u','v':'v','w':'w','x':'x','y':'y','z':'z'};return m[c.toLowerCase()]||c;}, transform:t=>[...t].reverse()},
+  { name:"Morse Code", cat:"aesthetic", map:()=>'', transform:t=>{const m={A:'.-',B:'-...',C:'-.-.',D:'-..',E:'.',F:'..-.',G:'--.',H:'....',I:'..',J:'.---',K:'-.-',L:'.-..',M:'--',N:'-.',O:'---',P:'.--.',Q:'--.-',R:'.-.',S:'...',T:'-',U:'..-',V:'...-',W:'.--',X:'-..-',Y:'-.--',Z:'--..',0:'-----',1:'.----',2:'..---',3:'...--',4:'....-',5:'.....',6:'-....',7:'--...',8:'---..',9:'----.'};return t.toUpperCase().split('').map(c=>m[c]||(c===' '?'/':c)).join(' ');}},
+];
+
+let savedTexts = [];
+let activeText = '';
+let activeCategory = 'all';
+
+function convert(font, text) {
+  if (!text) return '';
+  if (font.transform && font.map('a',0)==='') return font.transform(text);
+  let r = [...text].map((c,i)=>font.map(c,i)).join('');
+  if (font.transform) r = font.transform(r);
+  return r;
+}
+
+function esc(s) {
+  if (s == null) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function filtered() {
+  return activeCategory === 'all' ? fonts : fonts.filter(f=>f.cat===activeCategory);
+}
+
+function renderSidebar() {
+  const list = document.getElementById('sbList');
+  document.getElementById('savedCount').textContent = savedTexts.length;
+  if (savedTexts.length === 0) {
+    list.innerHTML = '<div class="sb-empty">Type above and press<br><strong>+ Save</strong> or Enter.<br><br>Click any item to<br>preview all fonts.</div>';
+    return;
+  }
+  list.innerHTML = '';
+  savedTexts.forEach((txt, i) => {
+    const row = document.createElement('div');
+    row.className = 'saved-row' + (txt === activeText ? ' active' : '');
+    row.innerHTML = `<span class="saved-row-txt">${esc(txt)}</span><button class="del-btn" title="Remove">✕</button>`;
+    row.addEventListener('click', e => {
+      if (e.target.classList.contains('del-btn')) return;
+      activeText = txt;
+      document.getElementById('userText').value = txt;
+      renderSidebar();
+      renderFontList();
+    });
+    row.querySelector('.del-btn').addEventListener('click', e => {
+      e.stopPropagation();
+      savedTexts.splice(i, 1);
+      if (activeText === txt) {
+        activeText = savedTexts[0] || '';
+        document.getElementById('userText').value = activeText;
+      }
+      renderSidebar();
+      renderFontList();
+    });
+    list.appendChild(row);
+  });
+}
+
+function renderFontList() {
+  const list = document.getElementById('fontList');
+  const lbl = document.getElementById('activeLabel');
+  const ff = filtered();
+
+  document.getElementById('styleCount').textContent = ff.length + ' style' + (ff.length!==1?'s':'');
+
+  if (!activeText) {
+    lbl.textContent = 'Type something above to preview fonts';
+    lbl.className = 'active-label empty';
+  } else {
+    lbl.textContent = activeText;
+    lbl.className = 'active-label';
+  }
+
+  list.innerHTML = '';
+  const cats = activeCategory === 'all' ? [...new Set(fonts.map(f=>f.cat))] : [activeCategory];
+
+  cats.forEach(cat => {
+    const group = ff.filter(f=>f.cat===cat);
+    if (!group.length) return;
+    if (activeCategory === 'all') {
+      const gh = document.createElement('div');
+      gh.className = 'group-head';
+      gh.textContent = cat.charAt(0).toUpperCase()+cat.slice(1);
+      list.appendChild(gh);
+    }
+    group.forEach(font => {
+      const preview = convert(font, activeText);
+      const row = document.createElement('div');
+      row.className = 'font-row';
+      row.innerHTML = `<div class="row-meta"><div class="row-name">${font.name}</div><div class="row-cat">${font.cat}</div></div><div class="row-preview ${!preview?'ph':''}">${preview?esc(preview):'no preview'}</div><button class="row-copy" data-val="${encodeURIComponent(preview||activeText)}">Copy</button>`;
+      row.querySelector('.row-copy').addEventListener('click', function() {
+        const t = decodeURIComponent(this.dataset.val);
+        navigator.clipboard.writeText(t).then(()=>{
+          this.textContent = '✓ Copied!';
+          this.classList.add('copied');
+          setTimeout(()=>{ this.textContent='Copy'; this.classList.remove('copied'); }, 1700);
+        });
+      });
+      list.appendChild(row);
+    });
+  });
+}
+
+function saveCurrentText() {
+  const val = document.getElementById('userText').value.trim();
+  if (!val) return;
+  if (!savedTexts.includes(val)) savedTexts.unshift(val);
+  activeText = val;
+  renderSidebar();
+  renderFontList();
+}
+
+document.getElementById('userText').addEventListener('input', e => {
+  activeText = e.target.value;
+  renderFontList();
+});
+document.getElementById('userText').addEventListener('keydown', e => { if(e.key==='Enter') saveCurrentText(); });
+document.getElementById('saveBtn').addEventListener('click', saveCurrentText);
+
+document.querySelectorAll('.tag').forEach(tag => {
+  tag.addEventListener('click', () => {
+    document.querySelectorAll('.tag').forEach(t=>t.classList.remove('active'));
+    tag.classList.add('active');
+    activeCategory = tag.dataset.cat;
+    renderFontList();
+  });
+});
+
+renderSidebar();
+renderFontList();
+</script>
+</body>
+</html>
